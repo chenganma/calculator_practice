@@ -33,60 +33,67 @@
   <br><br><br>
 
   <div align="center">
-    <div><input type="text" id="here" value=""></p></div><!-- <input id="output" name="output"> -->
+    <!-- <div><input type="text" id="here" value=""></p></div><input id="output" name="output"> -->
+    <div class="input"></div>
+    <div class="result"></div>
     <br>
     <div>
-      <button class="btn">7</button>
-      <button class="btn">8</button>
-      <button class="btn">9</button>
+      <button class="btn" onclick="push(7)">7</button>
+      <button class="btn" onclick="push(8)">8</button>
+      <button class="btn" onclick="push(9)">9</button>
     </div>
     <div>
-      <button class="btn">4</button>
-      <button class="btn">5</button>
-      <button class="btn">6</button>
+      <button class="btn" onclick="push(4)">4</button>
+      <button class="btn" onclick="push(5)">5</button>
+      <button class="btn" onclick="push(6)">6</button>
     </div>
     <div>
-      <button class="btn">3</button>
-      <button class="btn">2</button>
-      <button class="btn">1</button>
+      <button class="btn" onclick="push(1)">1</button>
+      <button class="btn" onclick="push(2)">2</button>
+      <button class="btn" onclick="push(3)">3</button>
     </div>
     <div>
-      <button class="btn">+</button>
-      <button class="btn">0</button>
-      <button class="btn">=</button>
+      <button class="btn" onclick="push('+')">+</button>
+      <button class="btn" onclick="push(0)">0</button>
+      <button class="btn" onclick="calculate()">=</button>
     </div>
     <div>
-      <button class="btn">AC</button>
+      <button class="btn" onclick="cleantotal()">AC</button>
     </div>
   </div>
 
   <script>
-     function handleCheck(e){
-       //console.log(e);
-       //console.log(this.innerHTML);
-       document.getElementById("here").value = this.innerHTML;
+       const input = document.querySelector(".input");
+       const result = document.querySelector('.result');
+       let value = ''
 
-       if(this.innerHTML == 'AC'){
-        document.getElementById("here").value = "";
-       }
-     }
-      //const checkboxes = document.querySelectorAll('input[value]');
-      const numbers = document.querySelectorAll("button.btn");
-      console.log(numbers);
+    function calculate() {
+       answer = eval(value);
+       //console.log(value);
+       result.innerHTML = answer;
+       clean(input);
+      // reset the value
+       value = '';
+    }
 
-      numbers.forEach (button => button.addEventListener('click',handleCheck));
-      // numbers.addEventListener('click', function(handleCheck)){
-      //   console.log(e);
-      // }
-      //checkboxes.forEach (button => button.addEventListener('click',handleCheck));
-      // checkboxes.forEach(function(element) {
-      //   console.log(element.innerHTML);
-      // });
-       // $(".btn").click(function(event) {
-       //     console.log("you clicked: ", this.innerHTML)
-       // });
+    function push(n) {
+      //   upper limit
+        value = value + `${n}`;
+        input.append(`${n}`);
+        clean(result);
+    }
+
+    function clean(elem){
+      //input.innerHTML='';
+      //result.value='';
+      elem.innerHTML="";
+    }
+
+    function cleantotal(){
+      result.innerHTML="";
+    }
+
   </script>
-
 
 
 </body>
